@@ -1,0 +1,36 @@
+<style>
+  body{
+    <% if user_signed_in? %>
+      background-image: url("http://crossbones.org.uk/wp-content/uploads/2016/08/grey-background.jpg");
+    <% else %>
+      background-image: url("https://teknologi.id/wp-content/uploads/2018/11/Mobile-Phone-Photography.png");
+    <% end %>
+    background-size: cover;
+    background-repeat:no-repeat;
+  }
+  h1{
+    color: white;
+    text-shadow: 4px 4px 8px black;
+    text-align: center;
+  }
+</style>
+<body>
+  <% if user_signed_in? %>
+    <br>
+    <% @posts.each do |x| %>
+      <div class="card" style="width: 22rem; margin: auto">
+        <%= image_tag x.image.url(:medium), class: "card-img-top" %>
+        <div class="card-body">
+          <%= x.description %>
+          <div class="text-right">
+            <%=link_to 'Edit', "/posts/#{x.id}/edit", class: "btn btn-info btn-sm"%>
+            <%= link_to 'Delete', "/posts/", method: :delete, confirm: "Are you sure?", class: "btn btn-info btn-sm"%>
+          </div>
+        </div>
+      </div>
+      <br>
+    <% end %>
+  <% else %>
+    <h1>POST WHAT YOU SEE, SHOW HOW YOU FEEL<h1>
+  <% end %>
+</body>

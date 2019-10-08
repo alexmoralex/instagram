@@ -1,0 +1,17 @@
+<style>
+  body{
+    background-image: url("http://crossbones.org.uk/wp-content/uploads/2016/08/grey-background.jpg");
+    background-size: cover;
+    background-repeat:no-repeat;
+  }
+</style>
+
+<body class="text-center">
+  <h2>Edit Post</h2>
+  <hr>
+  <% if user_signed_in? %>
+    <%= render 'form'%>
+  <% else %>
+    <h3>Please login or sign up first</h3>
+  <% end %>
+</body>

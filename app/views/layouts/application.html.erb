@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Picpost!</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+      <img src="https://i.dlpng.com/static/png/4472535-letter-p-png-images-transparent-background-png-play-png-letter-p-1073_1195_preview.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      <%= link_to "icpost!", root_url, class: "navbar-brand mb-0 h1" %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to "New Post", new_post_path, class: "nav-link" %>
+          </li>
+        </ul>
+          <div class="form-inline my-2 my-lg-0">
+            <% if user_signed_in? %>
+             <li style="list-style: none;"><%= link_to "Logout", destroy_user_session_path, method: :delete, confirm: "Are you sure?", class: "btn btn-outline-info" %></li>
+            <% else %>
+             <li style="list-style: none; padding-right: 10px;"><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-info" %></li>
+             <li style="list-style: none;"><%= link_to "Login", new_user_session_path, class: "btn btn-outline-info" %></li>
+            <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
